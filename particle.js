@@ -14,6 +14,9 @@ class Particle
       this.randRotX = random(TWO_PI)
       this.randRotY = random(TWO_PI)
       this.randRotZ = random(TWO_PI)
+    
+        this.scale = 0
+        this.scaleStep = 0.05
 
 
       this.locStep = 1
@@ -50,6 +53,11 @@ class Particle
         this.z += this.locStep * this.locZMultiplier
       }
 
+      if (this.scale <= 1)
+      {
+          this.scale += this.scaleStep
+      }
+
       push()
       translate(this.x, this.y, this.z)
       rotateX(this.randRotX)
@@ -61,6 +69,7 @@ class Particle
         noStroke()
         // emissiveMaterial(130, 230, 0);
         ambientMaterial(10, 0, 10)
+        scale(this.scale)
         model(this.model)
         pop()
     }
